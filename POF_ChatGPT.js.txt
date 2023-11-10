@@ -1,0 +1,47 @@
+
+function getPathTo(element) {
+
+    if (element.id !== '')
+        return 'id("' + element.id + '")';
+    if (element === document.body)
+        return element.tagName;
+
+    var ix = 0;
+    var siblings = element.parentNode.childNodes;
+    for (var i = 0; i < siblings.length; i++) {
+        var sibling = siblings[i];
+        if (sibling === element)
+            return getPathTo(element.parentNode) + '/' + element.tagName + '[' + (ix + 1) + ']';
+        if (sibling.nodeType === 1 && sibling.tagName === element.tagName)
+            ix++;
+    }
+}
+
+function getElementByXPath(xpath) {
+    return document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+}
+
+document.addEventListener('click', e => {
+    console.clear()
+    let path = getPathTo( document.elementFromPoint(e.clientX, e.clientY) );
+
+    let element = getElementByXPath(path);
+    
+    console.log( path, element );
+
+    
+    element.insertAdjacentHTML('beforebegin', '<div><button>BEL BOTTONAZZO</button></div>')
+
+}, {passive: true})
+
+document.addEventListener('mousemove', e => {
+    console.clear()
+    
+
+    let element = document.elementFromPoint(e.clientX, e.clientY);
+    
+    element.style console.log( path, element );
+    
+    element.insertAdjacentHTML('beforebegin', '<div><button>BEL BOTTONAZZO</button></div>')
+
+}, {passive: true})
