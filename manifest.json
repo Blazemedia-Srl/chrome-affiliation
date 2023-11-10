@@ -1,0 +1,11 @@
+{
+    "name": "BlazeMedia Affilation",
+    "description": "Insert BlazeFormat to website",
+    "version": "0.1",
+    "manifest_version": 3,
+    "action": {
+      "default_popup": "panel.html",
+      "default_icon": "bm_logo.png"
+    }
+  }
+  
