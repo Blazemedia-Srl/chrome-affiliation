@@ -1,6 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.doSomeStuff = void 0;
 console.log("Try npm run lint/fix!");
 const longString = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut aliquet diam.';
 const trailing = 'Semicolon';
@@ -10,7 +7,7 @@ const sicilian = true;
 ;
 const vizzini = (!!sicilian) ? !!!sicilian : sicilian;
 const re = /foo   bar/;
-function doSomeStuff(withThis, andThat, andThose) {
+export function doSomeStuff(withThis, andThat, andThose) {
     //function on one line
     if (!Boolean(andThose.length)) {
         return false;
@@ -21,5 +18,4 @@ function doSomeStuff(withThis, andThat, andThose) {
     console.log(longString, trailing, why, iWish, vizzini, re);
     return;
 }
-exports.doSomeStuff = doSomeStuff;
 // TODO: more examples
