@@ -5,7 +5,7 @@ class ElementPath {
 
         if (element.id !== '') return 'id("' + element.id + '")';
 
-        if (element === document.body) return element.tagName;
+        if (element === document.body) return '/';
 
         let ix = 0;
         let parent = element.parentNode;
@@ -31,8 +31,10 @@ class ElementPath {
 
         let xPathResult : XPathResult = document.evaluate( xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
 
+        console.log( xPathResult); 
+
         if( xPathResult.singleNodeValue === null) {
-            throw new Error(`Impossible to resolve xpath: {$xpath}`);
+            throw new Error(`Impossible to resolve xpath: ${xpath}`);
         }
 
         return <HTMLElement>xPathResult.singleNodeValue;

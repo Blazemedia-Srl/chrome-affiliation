@@ -1,26 +1,82 @@
-console.log("Try npm run lint/fix!");
+import ElementPath from './dom/ElementPath.js';
+import Button from './components/Button.js';
 
-const longString = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut aliquet diam.';
 
-const trailing = 'Semicolon'
+let button = new Button('#main_button');
+let elementPath = new ElementPath;
 
-			const why={am:'I tabbed?'};
+document.addEventListener('click', e => {
+    
+    console.clear()
+    
+    let currentElement = document.elementFromPoint( e.clientX, e.clientY );
 
-const iWish = "I didn't have a trailing space..."; 
+    if( currentElement === null ) return;
+    
+    let path = elementPath.getPathTo( <HTMLElement>currentElement );
 
-const sicilian = true;;
+    let element = elementPath.getElementByXPath( path );
+    
+    console.log( path, element );
+    
+    element.insertAdjacentHTML('beforebegin', '<div class="bm_element"><button>BEL BOTTONAZZO</button></div>');
 
-const vizzini = (!!sicilian) ? !!!sicilian : sicilian;
+    
 
-const re = /foo   bar/;
 
-export function doSomeStuff(withThis: string, andThat: string, andThose: string[]) {
-    //function on one line
-    if(!Boolean(andThose.length)) {return false;}
-    console.log(withThis);
-    console.log(andThat);
-    console.dir(andThose);
-    console.log(longString, trailing, why, iWish, vizzini, re);
-    return;
-}
-// TODO: more examples
+}, {passive: true});
+
+
+var timeoutId: number | null = null;
+
+document.addEventListener('mouseover', (e: MouseEvent) => {
+
+    // Cancella il timeout precedente se esiste
+    if (timeoutId) {
+        clearTimeout(timeoutId);
+    }
+
+    timeoutId = setTimeout(() => {
+
+        console.clear();
+
+        let currentElement = document.elementFromPoint( e.clientX, e.clientY );
+    
+        if( currentElement === null ) return;
+    
+        if( !currentElement.classList.contains('bm_elemeent_choice') ){
+    
+            let elements = document.querySelectorAll('.bm_element_choice');
+    
+            if( elements == null ) return;
+    
+            [].map.call( elements, (el : HTMLElement) => { 
+
+                el.classList.remove('bm_element_choice');
+
+               /* let parent = el.parentNode;
+                
+                if( parent ) {
+                    let button = parent.querySelector('.bm_element');
+                    
+                    if( button ) button.remove(); 
+                } */
+            } );
+    
+            currentElement.classList.add('bm_element_choice');
+            //currentElement.insertAdjacentHTML('beforebegin', '<div class="bm_element"><button>BEL BOTTONAZZO</button></div>');
+        } 
+
+        // Reset timeoutId dopo l'esecuzione
+        timeoutId = null;
+
+
+    }, 100) as unknown as number; // Ritardo di 200ms  ///casting da NodeJS.Timeout a number
+
+}, {passive: true});
+
+
+button.onClick( ( evt ) => { alert(' button onclick method '); } );
+
+
+
