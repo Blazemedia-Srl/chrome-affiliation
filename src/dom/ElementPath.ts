@@ -1,5 +1,4 @@
-
-class ElementPath {
+export default class ElementPath {
 
     getPathTo( element : HTMLElement ) : string {
 
@@ -47,5 +46,5 @@ class ElementPath {
     }
 }
 
-export default ElementPath;
+
 

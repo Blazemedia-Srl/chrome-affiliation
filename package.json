@@ -20,8 +20,10 @@
     "posttest": "npm.cmd run lint"
   },
   "devDependencies": {
-    "gts": "^5.2.0",
+    "@types/node": "20.8.2",
+    "gts": "^5.2.0",    
     "typescript": "~5.2.0",
-    "@types/node": "20.8.2"
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
   }
 }

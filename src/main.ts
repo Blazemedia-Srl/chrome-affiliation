@@ -1,8 +1,20 @@
 import ElementPath from './dom/ElementPath.js';
-import Button from './components/Button.js';
 
 
-let button = new Button('#main_button');
+console.log("Content script sta lavorando su questa pagina.");
+
+const style =`
+    <style>
+        .bm_element_choice {
+            border-top: 2px solid green !important;
+            transition: all 0.1s ease;
+        }
+    </style>
+`;
+
+document.head.insertAdjacentHTML('beforeend', style );
+
+
 let elementPath = new ElementPath;
 
 document.addEventListener('click', e => {
@@ -74,9 +86,4 @@ document.addEventListener('mouseover', (e: MouseEvent) => {
     }, 100) as unknown as number; // Ritardo di 200ms  ///casting da NodeJS.Timeout a number
 
 }, {passive: true});
-
-
-button.onClick( ( evt ) => { alert(' button onclick method '); } );
-
-
 

@@ -1,15 +1,19 @@
 {
-    "name": "BlazeMedia Affilation",
+    "name": "BlazeMedia Affiliation",
     "description": "Insert BlazeFormat to website",
     "version": "0.1",
     "manifest_version": 3,
     "action": {
       "default_popup": "panel.html",
-      "default_icon": "bm_logo.png"
+      "default_icon": "assets/bm_logo.png"
     },
     "permissions": ["activeTab", "scripting"],
-    "background": {
-      "service_worker": "background.js"
-    }
+    "content_scripts": [
+      { 
+        "matches" : ["<all_urls>"],
+        "js": [ "bundles/main.js" ]
+    
+      }
+  ]
   }
   
